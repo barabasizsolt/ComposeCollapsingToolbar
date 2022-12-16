@@ -19,9 +19,3 @@ val statusBarInsetDp: Dp
     get() = with(LocalDensity.current) {
         WindowInsets.statusBars.getTop(density = this).toDp()
     }
-
-val imeBottomInsetDp: Dp
-    @Composable
-    get() = with(LocalDensity.current) {
-        WindowInsets.ime.getBottom(density = this).toDp()
-    }
