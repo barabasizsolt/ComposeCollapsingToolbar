@@ -2,7 +2,6 @@ package com.barabasizsolt.collapsingtoolbar.ui.catalog
 
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +34,7 @@ internal fun Title(
 
     val headerHeight = AppTheme.dimens.headerHeight
     val toolbarHeight = AppTheme.dimens.toolbarHeight
+
     val titlePaddingStart = AppTheme.dimens.titlePaddingStart
     val titlePaddingEnd = AppTheme.dimens.titlePaddingEnd
     val paddingMedium = AppTheme.dimens.doubleContentPadding
