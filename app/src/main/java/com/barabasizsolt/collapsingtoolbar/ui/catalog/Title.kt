@@ -16,16 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.barabasizsolt.collapsingtoolbar.ui.util.statusBarInsetDp
+import com.barabasizsolt.collapsingtoolbar.ui.theme.AppTheme
 
 private const val titleFontScaleStart = 1f
 private const val titleFontScaleEnd = 0.66f
-
-private val titlePaddingStart = 16.dp
-private val titlePaddingEnd = 72.dp
 
 @Composable
 internal fun Title(
@@ -36,11 +32,16 @@ internal fun Title(
 ) {
     var titleHeightPx by remember { mutableStateOf(value = 0f) }
     var titleWidthPx by remember { mutableStateOf(value = 0f) }
-    val statusBarHeightPx = with(receiver = LocalDensity.current) { statusBarInsetDp.toPx() }
+
+    val headerHeight = AppTheme.dimens.headerHeight
+    val toolbarHeight = AppTheme.dimens.toolbarHeight
+    val titlePaddingStart = AppTheme.dimens.titlePaddingStart
+    val titlePaddingEnd = AppTheme.dimens.titlePaddingEnd
+    val paddingMedium = AppTheme.dimens.doubleContentPadding
 
     Text(
         text = stringResource(id = R.string.black_forest),
-        color = MaterialTheme.colors.onBackground,
+        color = AppTheme.colors.onBackground,
         fontSize = 30.sp,
         fontWeight = FontWeight.Bold,
         modifier = Modifier

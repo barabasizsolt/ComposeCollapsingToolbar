@@ -18,40 +18,38 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.barabasizsolt.collapsingtoolbar.ui.util.statusBarInsetDp
+import com.barabasizsolt.collapsingtoolbar.ui.theme.AppTheme
 
 @Composable
 internal fun Toolbar(
     modifier: Modifier = Modifier,
     showToolBar: Boolean
+) = AnimatedVisibility(
+    visible = showToolBar,
+    enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+    exit = fadeOut(animationSpec = tween(durationMillis = 500)),
+    modifier = modifier
 ) {
-    AnimatedVisibility(
-        visible = showToolBar,
-        enter = fadeIn(animationSpec = tween(durationMillis = 500)),
-        exit = fadeOut(animationSpec = tween(durationMillis = 500)),
-        modifier = modifier
-    ) {
-        TopAppBar(
-            modifier = Modifier
-                .background(color = MaterialTheme.colors.background)
-                .statusBarsPadding(),
-            navigationIcon = {
-                IconButton(
-                    onClick = { /*TODO: Implement it*/ },
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .size(size = 36.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = null,
-                        tint = MaterialTheme.colors.onBackground
-                    )
-                }
-            },
-            title = { },
-            backgroundColor = Color.Transparent,
-            elevation = 0.dp
-        )
-    }
+    TopAppBar(
+        modifier = Modifier
+            .background(color = AppTheme.colors.background)
+            .statusBarsPadding(),
+        navigationIcon = {
+            IconButton(
+                onClick = { /*TODO: Implement it*/ },
+                modifier = Modifier
+                    .padding(horizontal = AppTheme.dimens.doubleContentPadding)
+                    .size(size = 36.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = null,
+                    tint = AppTheme.colors.onBackground
+                )
+            }
+        },
+        title = { },
+        backgroundColor = Color.Transparent,
+        elevation = 0.dp
+    )
 }

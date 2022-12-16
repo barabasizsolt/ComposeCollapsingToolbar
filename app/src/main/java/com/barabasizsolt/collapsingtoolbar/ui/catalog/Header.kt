@@ -7,30 +7,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Dp
 import com.barabasizsolt.collapsingtoolbar.R
+import com.barabasizsolt.collapsingtoolbar.ui.theme.AppTheme
 
 @Composable
 internal fun Header(
     modifier: Modifier = Modifier,
     listState: LazyListState,
-    headerHeight: Dp,
+    headerHeightPx: Float
 ) {
-    val headerHeightPx = with(receiver = LocalDensity.current) { headerHeight.toPx() }
-
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(height = headerHeight)
+            .height(height = AppTheme.dimens.headerHeight)
             .graphicsLayer {
                 /*Parallax effect*/
                 if (listState.firstVisibleItemIndex == 0) {
@@ -58,7 +54,7 @@ internal fun Header(
                     colors = listOf(
                         Color.Transparent,
                         Color.Transparent,
-                        MaterialTheme.colors.background
+                        AppTheme.colors.background
                     )
                 )
             )
