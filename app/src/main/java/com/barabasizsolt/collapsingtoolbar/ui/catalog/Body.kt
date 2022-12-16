@@ -23,34 +23,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.barabasizsolt.collapsingtoolbar.R
+import com.barabasizsolt.collapsingtoolbar.ui.theme.AppTheme
 import com.barabasizsolt.collapsingtoolbar.ui.util.navigationBarInsetDp
 import com.barabasizsolt.collapsingtoolbar.ui.util.statusBarInsetDp
 
 @Composable
 internal fun Body(
     modifier: Modifier = Modifier,
-    listState: LazyListState,
-    headerHeight: Dp,
-) {
-    LazyColumn(
-        modifier = modifier,
-        state = listState,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        contentPadding = PaddingValues(
-            bottom = navigationBarInsetDp,
-            top = statusBarInsetDp / 2
-        ),
-        content = {
-            item { Spacer(modifier = Modifier.height(height = headerHeight)) }
-            bodyItem()
-        }
-    )
-}
+    listState: LazyListState
+) = LazyColumn(
+    modifier = modifier,
+    state = listState,
+    horizontalAlignment = Alignment.CenterHorizontally,
+    contentPadding = PaddingValues(
+        bottom = navigationBarInsetDp,
+        top = statusBarInsetDp / 2
+    ),
+    content = {
+        item { Spacer(modifier = Modifier.height(height = AppTheme.dimens.headerHeight)) }
+        bodyItem()
+    }
+)
 
 private fun LazyListScope.bodyItem() = items(count = 10) {
     Card(
-        modifier = Modifier
-            .padding(all = 16.dp)
+        modifier = Modifier.padding(all = AppTheme.dimens.doubleContentPadding),
+        backgroundColor = AppTheme.colors.background
     ) {
         Column {
             Image(
@@ -61,11 +59,11 @@ private fun LazyListScope.bodyItem() = items(count = 10) {
             )
             Text(
                 text = stringResource(id = R.string.lorem_ipsum),
-                style = MaterialTheme.typography.body1,
+                style = AppTheme.typography.body1,
                 textAlign = TextAlign.Justify,
-                color = MaterialTheme.colors.onBackground,
+                color = AppTheme.colors.onBackground,
                 modifier = Modifier
-                    .padding(all = 8.dp)
+                    .padding(all = AppTheme.dimens.contentPadding)
             )
         }
     }
