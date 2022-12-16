@@ -62,8 +62,7 @@ private fun LazyListScope.bodyItem() = items(count = 10) {
                 style = AppTheme.typography.body1,
                 textAlign = TextAlign.Justify,
                 color = AppTheme.colors.onBackground,
-                modifier = Modifier
-                    .padding(all = AppTheme.dimens.contentPadding)
+                modifier = Modifier.padding(all = AppTheme.dimens.contentPadding)
             )
         }
     }
